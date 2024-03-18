@@ -19,13 +19,13 @@ jobs:
         ports:
           - 5432:5432
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
     steps:
     - uses: actions/checkout@v3
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
         python-version: 3.9
-
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip 
@@ -84,6 +84,7 @@ jobs:
       run: |
         cd frontend/
         npm run test
+
   build_frontend_and_push_to_docker_hub:
     name: Push frontend Docker image to DockerHub
     runs-on: ubuntu-latest
@@ -170,4 +171,8 @@ jobs:
       with:
         to: ${{ secrets.TELEGRAM_TO }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
-        message: Деплой Kittygram успешно выполнен!
+        message: |
+            Деплой Kittygram успешно выполнен!
+            Pushed by: ${{ github.actor }}
+            Commit message: ${{ github.event.commits[0].message }}
+            Commit link: [View commit](https://github.com/${{ github.repository }}/commit/${{ github.sha }})
