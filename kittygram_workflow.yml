@@ -24,8 +24,11 @@ jobs:
     - uses: actions/checkout@v3
     - name: Set up Python
       uses: actions/setup-python@v4
-      with:
-        python-version: 3.9
+      with: 
+        python-version: ${{ matrix.python-version }}
+      strategy:
+        matrix:
+          python-version: [3.8, 3.9, 3.10, 3.11]
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip 
@@ -171,8 +174,4 @@ jobs:
       with:
         to: ${{ secrets.TELEGRAM_TO }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
-        message: |
-            Деплой Kittygram успешно выполнен!
-            Pushed by: ${{ github.actor }}
-            Commit message: ${{ github.event.commits[0].message }}
-            Commit link: [View commit](https://github.com/${{ github.repository }}/commit/${{ github.sha }})
+        message: Деплой kittygram успешно выполнен! Коммит сделал ${{ github.actor }} с сообщением "${{ github.event.commits[0].message }}". Ссылка на коммит https://github.com/${{ github.repository }}/commit/${{github.sha}}.
