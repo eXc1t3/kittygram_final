@@ -1,3 +1,6 @@
+![example workflow](https://github.com/github/docs/actions/workflows/main.yml/badge.svg)
+
+
 ## Описание проекта
 
 Соцсеть с возможностью публикации фотографий ваших любимых котиков
