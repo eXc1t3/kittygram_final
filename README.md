@@ -1,4 +1,4 @@
-![Workflow Status](https://github.com/github/docs/actions/workflows/kittygram_workflow.yml/badge.svg)
+[![.github/workflows/main.yml](https://github.com/eXc1t3/kittygram_final/actions/workflows/main.yml/badge.svg)](https://github.com/eXc1t3/kittygram_final/actions/workflows/main.yml)
 
 
 ## Описание проекта
