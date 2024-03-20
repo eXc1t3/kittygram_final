@@ -18,20 +18,19 @@ services:
       - db
     volumes:
       - static:/static
-      - media:/var/www/kittygram/media
+      - media:/app/media/
   frontend:
     env_file: .env
     image: orlanuzum/kittygram_frontend
     command: cp -r /app/build/. /static/
     volumes:
       - static:/static
-      - media:/var/www/kittygram/media
   gateway:
     image: orlanuzum/kittygram_gateway
     env_file: .env
     volumes:
       - static:/static/
-      - media:/var/www/kittygram/media
+      - media:/app/media/
     depends_on:
       - backend
       - frontend
