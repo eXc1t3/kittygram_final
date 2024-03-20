@@ -16,20 +16,20 @@ services:
       - db
     volumes:
       - static:/static
-      - media:/var/www/kittygram
+      - media:/var/www/kittygram/media
   frontend:
     env_file: .env
     build: ./frontend/
     command: cp -r /app/build/. /static/
     volumes:
       - static:/static
-      - media:/var/www/kittygram
+      - media:/var/www/kittygram/media
   gateway:
     build: ./nginx/
     env_file: .env
     volumes:
       - static:/static/
-      - media:/var/www/kittygram
+      - media:/var/www/kittygram/media
     depends_on:
       - backend
       - frontend
