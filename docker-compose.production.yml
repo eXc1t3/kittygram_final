@@ -20,7 +20,6 @@ services:
       - static:/static
       - media:/app/media/
   frontend:
-    env_file: .env
     image: orlanuzum/kittygram_frontend
     command: cp -r /app/build/. /static/
     volumes:
@@ -28,11 +27,11 @@ services:
   gateway:
     image: orlanuzum/kittygram_gateway
     env_file: .env
+    ports:
+      - 9000:80
     volumes:
-      - static:/static/
+      - static:/static
       - media:/app/media/
     depends_on:
       - backend
       - frontend
-    ports:
-      - 9000:80
